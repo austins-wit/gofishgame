@@ -12,7 +12,7 @@ import java.util.Iterator;
  * A class representing a generic pile of cards. Contains utility methods such
  * as sorting, shuffling, and searching.
  * 
- * @author piercec5
+ * @author Corey Pierce
  *
  */
 public class Pile {
@@ -60,7 +60,12 @@ public class Pile {
 			discardPile.addCard(discardCard);
 		}
 	}
-
+	
+	public Card getCardAtIndex(int index) {
+		// TODO Implement
+		return cards.get(index);
+	}
+	
 	/**
 	 * Returns the size of the pile.
 	 * 
