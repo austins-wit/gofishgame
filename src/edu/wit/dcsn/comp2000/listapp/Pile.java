@@ -16,6 +16,7 @@ import java.util.Iterator;
  *
  */
 public class Pile {
+	
 	private boolean initialized = false; // ill ask Scott
 	/*
 	 * Reason: 
