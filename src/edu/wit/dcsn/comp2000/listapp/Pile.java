@@ -181,8 +181,8 @@ public class Pile {
 	 * @param args
 	 *            -unused-
 	 */
+	//Got rid of something to allow me to commit this project
 	public static void main(String[] args) {
-		// TODO Implement
 		Pile testDeck = new Pile();
 		System.out.println("Is deck empty? " + testDeck.isEmpty());
 		Card spades = new Card(Suit.SPADES, Rank.KING);
