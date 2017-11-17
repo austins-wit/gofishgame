@@ -151,11 +151,9 @@ public class Player {
 		this.score = 0; //reset score
 		
 		//reset player's hand
-		int i = 0;
 		while(this.hand.getSize() != 0){
 			
-			this.hand.removeCard(i);
-			i++;
+			this.hand.removeCard(0);
 		
 		}// end while
 		
