@@ -150,7 +150,7 @@ public class Pile {
 		Iterator<Card> searcher = cards.iterator();
 		while (searcher.hasNext()) {
 			Card searcedRank = searcher.next();
-			if (rank.equals(searcedRank)) {
+			if (rank.equals(searcedRank.rank)) {
 				return cards.indexOf(searcedRank);
 			}
 		}
