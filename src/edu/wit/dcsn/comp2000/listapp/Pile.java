@@ -5,6 +5,9 @@
 package edu.wit.dcsn.comp2000.listapp;
 
 import java.util.LinkedList;
+
+import javax.swing.plaf.synth.SynthSeparatorUI;
+
 import java.util.Collections;
 import java.util.Iterator;
 
@@ -16,13 +19,7 @@ import java.util.Iterator;
  *
  */
 public class Pile {
-	
-	private boolean initialized = false; // ill ask Scott
-	/*
-	 * Reason: 
-	 * This is here because in order for a card game to start the game
-	 * you need a deck cards.
-	 */
+
 	private LinkedList<Card> cards;
 
 	/**
@@ -30,7 +27,6 @@ public class Pile {
 	 */
 	public Pile() {
 		// TODO Implement
-		initialized = true;
 		cards = new LinkedList<>();
 	}
 
@@ -55,7 +51,7 @@ public class Pile {
 	public void discardAll(Pile discardPile) {
 		// TODO Implement
 		Card discardCard;
-		while(!cards.isEmpty()){
+		while (!cards.isEmpty()) {
 			discardCard = cards.remove();
 			discardPile.addCard(discardCard);
 		}
@@ -97,6 +93,7 @@ public class Pile {
 		if (cards.size() == 0) {
 			return false;
 		}
+		cards.remove(card);
 		return true;
 	}
 
@@ -107,7 +104,7 @@ public class Pile {
 	 */
 	public boolean isEmpty() {
 		// TODO Implement
-		if(cards.size() == 0){
+		if (cards.size() == 0) {
 			return true;
 		}
 		return false;
@@ -130,7 +127,7 @@ public class Pile {
 	 */
 	public int search(Card card) {
 		// TODO Implement
-		if(cards.contains(card)){
+		if (cards.contains(card)) {
 			return cards.indexOf(card);
 		}
 		return -1;
@@ -146,9 +143,9 @@ public class Pile {
 	 */
 	public int search(Rank rank) {
 		Iterator<Card> searcher = cards.iterator();
-		while(searcher.hasNext()){
+		while (searcher.hasNext()) {
 			Card searcedRank = searcher.next();
-			if(rank.equals(searcedRank)){
+			if (rank.equals(searcedRank)) {
 				return cards.indexOf(searcedRank);
 			}
 		}
@@ -171,8 +168,11 @@ public class Pile {
 	@Override
 	public String toString() {
 		// TODO Implement
-		
-		return null;
+		String deck = "";
+		for (Card card : cards) {
+			deck += card.toString() + " ";
+		}
+		return "{ " + deck + " }";
 	}
 
 	/**
@@ -183,5 +183,36 @@ public class Pile {
 	 */
 	public static void main(String[] args) {
 		// TODO Implement
+		Pile testDeck = new Pile();
+		System.out.println("Is deck empty? " + testDeck.isEmpty());
+		Card spades = new Card(Suit.SPADES, Rank.KING);
+		Card hearts = new Card(Suit.HEARTS, Rank.QUEEN);
+		Card clubs = new Card(Suit.CLUBS, Rank.ACE);
+		Card diamonds = new Card(Suit.DIAMONDS, Rank.JACK);
+		testDeck.addCard(spades);
+		testDeck.addCard(hearts);
+		testDeck.addCard(clubs);
+		testDeck.addCard(diamonds);
+		System.out.println("Is deck empty? " + testDeck.isEmpty());
+		System.out.println("Size of deck: " + testDeck.getSize() + " cards");
+		System.out.println("Test Deck: " + testDeck.toString());
+		testDeck.shuffle();
+		System.out.println("Shuffled Deck: " + testDeck.toString());
+		testDeck.sort();
+		System.out.println("Sorted Deck: " + testDeck.toString());
+		System.out.println("Removing a card from index 2...");
+		testDeck.removeCard(2);
+		System.out.println("Cards after index removal: " + testDeck.getSize() + " cards");
+		System.out.println("Removing a card the King card...");
+		testDeck.removeCard(spades);
+		System.out.println("Cards remaining: " + testDeck.getSize() + " cards");
+		System.out.println(testDeck.toString());
+		System.out.println("Index of Ace: " + testDeck.search(clubs));
+		System.out.println("Index of Queen: " + testDeck.search(Rank.QUEEN));
+		System.out.println("Discarding cards...");
+		Pile discardPile = new Pile();
+		testDeck.discardAll(discardPile);
+		System.out.println("Number of Cards in main pile: " + testDeck.getSize() + " cards");
+		System.out.println("Number of Cards in discard pile: " + discardPile.getSize() + " cards");
 	}
 }
